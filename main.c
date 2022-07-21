@@ -46,7 +46,7 @@ void printFloat(float a)
  *
  */
 
-//  ahora lo chido Punteros
+//  ahora lo chido Punteros http://chuwiki.chuidiang.org/index.php?title=Arrays_en_C
 void cargardatos(int *i, char *c)
 {
     printf("ingresa un numero: ");
@@ -115,7 +115,14 @@ int main() {
     printf("ingresa el numero de lemento del arreglo: ");
     scanf(" %i", &N);//recuerden en este caso le estamos diciendo que llenela direcciond e memoria donde estaguardado N
     arregloInt = (int *) malloc(N*sizeof(int)); //reservamos la memoria requerida para una rreglo  de N elementos
-    llenarArrayInt(arregloInt,N);
-    printf("el elemento %i es:%i",5,arregloInt[5]);
+    llenarArrayInt(arregloInt,N);// aqui llenamos nuestro puntero de ints
+    printf("el elemento %i es:%i \n",0,arregloInt[0]);// aqui mostramos el elemento en en indice 5.
+    // con lo siguente imprimimos todos los elementos del arreglo
+    for (int j = 0; j < N; ++j) {
+        printf("%i, ", arregloInt[j]);
+    }
+    free(arregloInt);/*cuando se usa malloc es necesario liberar la memoria  al final del programa,
+    * de lo contrario las variables quedaran en memoria(esto depende de cada sistema ).
+    */
     return 0;
 }
