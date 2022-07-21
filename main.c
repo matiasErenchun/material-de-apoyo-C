@@ -45,34 +45,47 @@ void printFloat(float a)
 /*
  *
  */
+
+//  ahora lo chido Punteros
+void cargardatos(int *i, char *c)
+{
+    printf("ingresa un numero: ");
+    scanf(" %i", i);// bueno gente esto esta raro lo se, que diablos esta pasando aqui XD
+    //en la direccion de memoria i guardamos lo que scanf nos traiga
+    printf("tu numero es %i\n", *i);// cone sot apuntamos al valor de la variable.
+    printf("ingresa un caracter: ");
+    scanf(" %c", c);// bueno gente esto esta raro lo se, que diablos esta pasando aqui XD
+    printf("tu caracter es %c\n", *c);
+}
 char leerCaracter() {
     //https://www.programiz.com/c-programming/c-input-output
     char a;
-    printf("ingresa un caracter: ");
-    scanf(" %c", &a);// bueno gente esto esta raro los e que diablos esta pasando aqui XD
+    printf("ingresa un caracter: \n");
+    scanf(" %c", &a);// bueno gente esto esta raro lo se, que diablos esta pasando aqui XD
     printf("tu caracter es %c\n", a);
     return a;
 }
 
-char *leerCaracteres()
+void llenarArrayInt(int* arry, int N)
 {
-    int i=0;
-    char a[10];
-    char b;
-    while (i<10)
+    int j;
+    for (int i = 0; i < N; ++i)
     {
-        b=leerCaracter();
-        a[i]= b;
-        i++;
+        printf("ingresa un numero: ");
+        scanf(" %i", &j);
+        arry[i]=j;
     }
-    i=0;
-    while (i<10)
-    {
-        printf("%c", a[i]);
-        i++;
-    }
-    printf("\n");
-    return a;
+}
+
+
+void tamanoArreglo(char** t)
+{
+    int tamnoArreglo = sizeof (*t);
+    int tamanosPrimerElemento = sizeof (t[0]);
+    printf(" arrar: %d \n", tamnoArreglo);
+    printf(" prim: %d \n", tamanosPrimerElemento);
+    printf("%d \n", tamnoArreglo/tamanosPrimerElemento);
+    printf("%s \n",t[0]);
 }
 
 int main() {
@@ -89,11 +102,20 @@ int main() {
     int a;
     //char a;
     float b =1.0004;
-
-    printf("Hello, World!\n");
     printFloat(b);
-    char *t =leerCaracteres();
-    printf("%s \n",&t);
 
+    //punteros
+    int i;
+    char c;
+    cargardatos(&i,&c);//el & indica que pasamos la direccion de memoria del puntero
+    printf("i:%i ,c:%c",i,c);// luego aqui ya imprimimos las varibles con los valores que estan guardados
+
+    //arreglos dinamiscos en C
+    int *arregloInt, N;
+    printf("ingresa el numero de lemento del arreglo: ");
+    scanf(" %i", &N);//recuerden en este caso le estamos diciendo que llenela direcciond e memoria donde estaguardado N
+    arregloInt = (int *) malloc(N*sizeof(int)); //reservamos la memoria requerida para una rreglo  de N elementos
+    llenarArrayInt(arregloInt,N);
+    printf("el elemento %i es:%i",5,arregloInt[5]);
     return 0;
 }
