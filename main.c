@@ -78,16 +78,6 @@ void llenarArrayInt(int* arry, int N)
 }
 
 
-void tamanoArreglo(char** t)
-{
-    int tamnoArreglo = sizeof (*t);
-    int tamanosPrimerElemento = sizeof (t[0]);
-    printf(" arrar: %d \n", tamnoArreglo);
-    printf(" prim: %d \n", tamanosPrimerElemento);
-    printf("%d \n", tamnoArreglo/tamanosPrimerElemento);
-    printf("%s \n",t[0]);
-}
-
 int main() {
     //como podemos ver el main es la funcion general de nuestro programa, la cuals era llamada por el sistema operativo para ahcer correr el programa
     //al ser esta una funcion  tiene que terminar con return, el cual el sistema operativo utiliza para determinar como termino la ejecucion del programa,
@@ -118,6 +108,16 @@ int main() {
     llenarArrayInt(arregloInt,N);// aqui llenamos nuestro puntero de ints
     printf("el elemento %i es:%i \n",0,arregloInt[0]);// aqui mostramos el elemento en en indice 5.
     // con lo siguente imprimimos todos los elementos del arreglo
+
+    /* SABER EL TAMAÑO DE UN ARRAY */
+    /*segun el siguente link lo siguente no funciona en c para arreglos creados dinamicamente,
+     * aun asi existen soluciones que se plantean en el link
+     * https://stackoverflow.com/questions/492384/how-to-find-the-sizeof-a-pointer-pointing-to-an-array
+     */
+    // RECORDAR QUE ESTO ES PARA ARREGLOS ESTATICOS
+    int cadena[5]={1,2,3,4,5};
+    printf("el elemento :%i \n", sizeof(cadena)/sizeof (int));// dividimos la cantidad de bits que usa el arreglo en los bits que usa el tipop de variable
+
     for (int j = 0; j < N; ++j) {
         printf("%i, ", arregloInt[j]);
     }
