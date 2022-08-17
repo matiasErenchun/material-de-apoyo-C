@@ -15,7 +15,7 @@ pero esta es la forma de hacer comenatarios multilinea, por convencion se suele 
 
 /*----------------------------------Funciones con parametros simples---------------------*/
 /*
- * en C existen disitntos tiposd e parametros en este caso vamos a ver funciones con parametros simples.
+ * en C existen disitntos tipos de parametros en este caso vamos a ver funciones con parametros simples.
  */
 
 /*
@@ -102,7 +102,7 @@ int main() {
 
     //arreglos dinamiscos en C
     int *arregloInt, N;
-    printf("ingresa el numero de lemento del arreglo: ");
+    printf("ingresa el numero de elemento del arreglo: ");
     scanf(" %i", &N);//recuerden en este caso le estamos diciendo que llenela direcciond e memoria donde estaguardado N
     arregloInt = (int *) malloc(N*sizeof(int)); //reservamos la memoria requerida para una rreglo  de N elementos
     llenarArrayInt(arregloInt,N);// aqui llenamos nuestro puntero de ints
@@ -115,6 +115,13 @@ int main() {
      * https://stackoverflow.com/questions/492384/how-to-find-the-sizeof-a-pointer-pointing-to-an-array
      */
     // RECORDAR QUE ESTO ES PARA ARREGLOS ESTATICOS
+
+    //------------- tranformar int a ASII-------------
+    int miASII=55;
+    char asii = (char) miASII;
+    printf("mi char is %c\n",asii);
+    //https://spreadsheeto.com/wp-content/uploads/2017/09/ascii-codes-table.png
+
     int cadena[5]={1,2,3,4,5};
     printf("el elemento :%i \n", sizeof(cadena)/sizeof (int));// dividimos la cantidad de bits que usa el arreglo en los bits que usa el tipop de variable
 
