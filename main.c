@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 /*estas librerias las creamos nosotros es una buena forma de ordenar los codigos
 *https://ricardoromo.co/2019/como-crear-una-libreria-en-c-c/
@@ -77,8 +78,105 @@ void llenarArrayInt(int* arry, int N)
     }
 }
 
+int mirandom(int min,int max)
+{
+    int a;
+    a = (rand() % (max -min))+1;
+    return a;
+}
+
+void llenararreglode1a10(int n,int arreglo[])
+{
+    for (int i = 0; i < n; ++i)
+    {
+        arreglo[i]= mirandom(1,10);
+    }
+}
+
+void llenarArregloSecuencial(int n,int arreglo[])
+{
+    for (int i = 0; i < n; ++i)
+    {
+        arreglo[i]=i;
+    }
+}
+
+void imprimirarreglo(int n, int arreglo[])
+{
+    for (int i = 0; i < n; ++i) {
+        if(i==0)
+        {
+            printf(" [ %i,",arreglo[i]);
+        }
+        else
+        {
+           if(i==n-1)
+           {
+               printf("%i ]",arreglo[i]);
+           }
+           else
+           {
+               printf(" %i,",arreglo[i]);
+           }
+        }
+    }
+}
+
+//la busqueda binaria es una forma muy eficiente de buscar elementos dentro de una lista ordenada
+//el tiempo de busqueda es similar a log2(n)
+int busquedaBinaria(int largo,int elementoBuscar, int arr[])
+{
+    int respuesta = -1;
+    int bordeinferior = 0;
+    int bordeSuperior = largo-1;
+    int continuar=1;
+    if(arr[bordeinferior]>elementoBuscar || arr[bordeSuperior]<elementoBuscar)
+    {
+        continuar=0;
+    }
+    while (continuar)
+    {
+        printf("bordein %i , bordesup %i",bordeinferior,bordeSuperior);
+        if(elementoBuscar == arr[bordeinferior])
+        {
+            respuesta=bordeinferior;
+            continuar=0;
+        }
+        else if( elementoBuscar == arr[bordeSuperior])
+        {
+            respuesta= bordeSuperior;
+            continuar=0;
+        }
+        else
+        {
+            int centro = (bordeSuperior+bordeinferior)/2;
+            printf("centro: %i\n", centro);
+            if(elementoBuscar == arr[centro])
+            {
+                respuesta=centro;
+                continuar=0;
+            }
+            else if(elementoBuscar > arr[centro])
+            {
+                bordeinferior = centro;
+            }
+            else if(elementoBuscar < arr[centro])
+            {
+                bordeSuperior= centro;
+            }
+            else if(bordeSuperior-bordeinferior<=1)
+            {
+                continuar=0;
+            }
+        }
+    }
+    return respuesta;
+}
 
 int main() {
+    //para usar random se require sembrar la semilla
+    srand(time(NULL));
+
     //como podemos ver el main es la funcion general de nuestro programa, la cuals era llamada por el sistema operativo para ahcer correr el programa
     //al ser esta una funcion  tiene que terminar con return, el cual el sistema operativo utiliza para determinar como termino la ejecucion del programa,
     // el return 0 es cuando el programa se ejecuto sin errores
@@ -94,17 +192,45 @@ int main() {
     float b =1.0004;
     printFloat(b);
 
-    //punteros
+    //
+    //---------------------------- Arreglos estaticos
+    //
+    int elementos;
+    printf("ingrese el numero de elementos que tendran sus listas, maximo 100 elementos: \n");
+    /*
+    scanf_s("%i", &elementos);
+    int arr1a10[elementos];
+
+     en algunos compiladores lo anterior no funciona y se tiene que hacer lo que hice.
+     */
+    scanf_s("%i", &elementos);
+    /*
+    int arr1a10[100];
+    llenararreglode1a10(elementos,arr1a10);
+    imprimirarreglo(elementos, arr1a10);
+    */
+    int arr[100];
+    llenarArregloSecuencial(elementos,arr);
+    int elementoBuscar;
+    printf("ingrese el numero de elemento a buscar\n");
+    scanf_s("%i", &elementoBuscar);
+    imprimirarreglo(elementos,arr);
+    int salida = busquedaBinaria(elementos,elementoBuscar,arr);
+    printf("el elemento esta en el indice %i.\n",salida);
+    //
+    //------------------------ Punteros
+    //
     int i;
     char c;
     cargardatos(&i,&c);//el & indica que pasamos la direccion de memoria del puntero
     printf("i:%i ,c:%c",i,c);// luego aqui ya imprimimos las varibles con los valores que estan guardados
-
-    //arreglos dinamiscos en C
+    //
+    //------------------------ arreglos dinamiscos en C
+    //
     int *arregloInt, N;
     printf("ingresa el numero de elemento del arreglo: ");
-    scanf(" %i", &N);//recuerden en este caso le estamos diciendo que llenela direcciond e memoria donde estaguardado N
-    arregloInt = (int *) malloc(N*sizeof(int)); //reservamos la memoria requerida para una rreglo  de N elementos
+    scanf(" %i", &N);//recuerden en este caso le estamos diciendo que llene la direccion de memoria donde esta guardado N
+    arregloInt = (int *) malloc(N*sizeof(int)); //reservamos la memoria requerida para un arreglo de N elementos
     llenarArrayInt(arregloInt,N);// aqui llenamos nuestro puntero de ints
     printf("el elemento %i es:%i \n",0,arregloInt[0]);// aqui mostramos el elemento en en indice 5.
     // con lo siguente imprimimos todos los elementos del arreglo
@@ -131,5 +257,6 @@ int main() {
     free(arregloInt);/*cuando se usa malloc es necesario liberar la memoria  al final del programa,
     * de lo contrario las variables quedaran en memoria(esto depende de cada sistema ).
     */
+
     return 0;
 }
