@@ -23,7 +23,7 @@ pero esta es la forma de hacer comenatarios multilinea, por convencion se suele 
  * Como definir una funcion:
  * primero va el tipo de dato que retorna, en el casod e mas abajo es un float(ya tienen que conocerlo),
  * luego su nombre y entre parentesis los parametros que recibe con el tipo especifico al que pertenesen.
- * finalmente el return con lo que queremos regresar
+ * Finalmente, el return con lo que queremos regresar
  */
 float dividir(float A,float B)
 {
@@ -122,6 +122,15 @@ void imprimirarreglo(int n, int arreglo[])
     }
 }
 
+void imprimirCadena(int n, char cadena[])
+{
+    for (int i = 0; i < n; ++i)
+    {
+        printf("%c", cadena[i]);
+    }
+    printf("\n");
+}
+
 //la busqueda binaria es una forma muy eficiente de buscar elementos dentro de una lista ordenada
 //el tiempo de busqueda es similar a log2(n)
 int busquedaBinaria(int largo,int elementoBuscar, int arr[])
@@ -173,7 +182,102 @@ int busquedaBinaria(int largo,int elementoBuscar, int arr[])
     return respuesta;
 }
 
+int leercadenaChar(int n,char cadena[])
+{
+    printf("ingrese una cadena de largo maximo %i\n", n);
+    scanf("%s", cadena);
+    int i=0, largo=0;
+    while(i<n)
+    {
+        if(cadena[i]>=32 && cadena[i]<127)
+        {
+            printf("%i, ", cadena[i]);
+            largo++;
+        }
+        i++;
+    }
+    printf("\n");
+    return largo;
+}
+
+void invertirCadena(int largo, char cadena[], char cadenaI[])
+{
+    for (int i = 0; i < largo; ++i)
+    {
+        cadenaI[i]=cadena[largo-1-(i)];
+    }
+}
+
+int sonIguales(int largo1, char cadena1[], int largo2, char cadena2[])
+{
+    int salida = 1;
+    if(largo1==largo2)
+    {
+        for (int i = 0; i < largo1; ++i)
+        {
+            if(cadena2[i]!=cadena1[i])
+            {
+                salida = 0;
+            }
+        }
+    }
+    else
+    {
+        salida = 0;
+    }
+    return salida;
+}
+
+int espalindromo(int largo, char cadena[])
+{
+    printf("largo %i\n", largo);
+    printf("cadena: %s\n", cadena);
+    int es=1,i=0;
+    while (i<largo && es==1)
+    {
+        if(cadena[i]!=cadena[largo-1])
+        {
+            es = 0;
+        }
+        i++;
+        largo--;
+    }
+    return es;
+}
+
+int contiene(int laro1, char cadena1[], int largo2, char cadena2[])
+{
+    int esta=0,i=0,j=0,p;
+    while (i<laro1)
+    {
+        if(cadena1[i]==cadena2[0])
+        {
+            p=i;
+            while (j<largo2 && p<laro1)
+            {
+                if(cadena1[p]!=cadena2[j])
+                {
+                    p+=laro1;
+                }
+                else
+                {
+                    p++;
+                    j++;
+                }
+            }
+            if(j==largo2)
+            {
+                esta=1;
+                i+laro1;
+            }
+        }
+        i++;
+    }
+    return esta;
+}
+
 int main() {
+
     //para usar random se require sembrar la semilla
     srand(time(NULL));
 
@@ -208,7 +312,7 @@ int main() {
     int arr1a10[100];
     llenararreglode1a10(elementos,arr1a10);
     imprimirarreglo(elementos, arr1a10);
-    */
+
     int arr[100];
     llenarArregloSecuencial(elementos,arr);
     int elementoBuscar;
@@ -217,6 +321,44 @@ int main() {
     imprimirarreglo(elementos,arr);
     int salida = busquedaBinaria(elementos,elementoBuscar,arr);
     printf("el elemento esta en el indice %i.\n",salida);
+    */
+
+    //1
+
+    int largo=10;
+    /*
+    char cadenaa[10];
+    char cadenai[10];
+    int t = leercadenaChar(largo,cadenaa);
+    printf("largo cadena %i.\n", t);
+    invertirCadena(t,cadenaa,cadenai);
+    imprimirCadena(t, cadenai);
+     */
+    //2
+    /*
+    char cadena1[10];
+    char cadena2[10];
+    int largoc1= leercadenaChar(largo,cadena1);
+    int largoc2= leercadenaChar(largo, cadena2);
+    printf("son: %i \n",sonIguales(largoc1,cadena1,largoc2,cadena2));
+    */
+
+    //3
+    /*
+    char cadena3[10];
+    int largoc3= leercadenaChar(largo,cadena3);
+    printf("es :%i\n",espalindromo(largoc3, cadena3));
+     */
+
+    //4
+    /*
+    char cadena4[10];
+    int largoc4= leercadenaChar(largo,cadena4);
+    char cadena5[10];
+    int largoc5= leercadenaChar(largo,cadena5);
+    printf("%i\n",contiene(largoc4,cadena4,largoc5,cadena5));
+     */
+
     //
     //------------------------ Punteros
     //
