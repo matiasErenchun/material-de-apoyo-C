@@ -1,12 +1,12 @@
+#include "milibreria.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <time.h>
 
 /*estas librerias las creamos nosotros es una buena forma de ordenar los codigos
 *https://ricardoromo.co/2019/como-crear-una-libreria-en-c-c/
 */
-#include "miLibreriaPrototipo.h"
+
 
 //primero lo primero asi se crean comentarios en C, este es un comentario de una linea
 /*
@@ -268,12 +268,52 @@ int contiene(int laro1, char cadena1[], int largo2, char cadena2[])
             if(j==largo2)
             {
                 esta=1;
-                i+laro1;
+                i+=laro1;
             }
         }
         i++;
     }
     return esta;
+}
+
+int contarH(int largoPalabra, char palabra[],int largoFila,char fila[])
+{
+    int j, k,h=0;
+    for (int i = 0; i < largoFila; ++i)
+    {
+        j=0;
+        k=i;
+        while (k<largoFila && j<largoPalabra)
+        {
+            if(fila[k]==palabra[j])
+            {
+                k++;
+                j++;
+            }
+            else
+            {
+                k=largoFila*2;
+            }
+        }
+        if(j==largoPalabra)
+        {
+            h++;
+        }
+    }
+    return h;
+}
+
+int sopadeletras(int largo,char palabra[], int lsopa, char sopa[5][5])
+{
+
+    int cantidadCadena=0;
+    int i=0;
+    while (i<lsopa)
+    {
+        cantidadCadena+= contarH(largo,palabra,lsopa,sopa[i]);
+        i++;
+    }
+    return cantidadCadena;
 }
 
 int main() {
@@ -326,6 +366,15 @@ int main() {
     //1
 
     int largo=10;
+    char ala[2] ="tt";
+    char sopa[5][5] = {{"alalq"},
+                       {"pepla"},
+                       {"laatt"},
+                       {"ttttl"},
+                       {"ceela"}};
+
+    mostrarSopaCuadrada(5,sopa);
+    printf("%s %i \n",ala,sopadeletras(2,ala,5,sopa));
     /*
     char cadenaa[10];
     char cadenai[10];
