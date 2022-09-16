@@ -187,7 +187,7 @@ int leercadenaChar(int n,char cadena[])
     printf("ingrese una cadena de largo maximo %i\n", n);
     scanf("%s", cadena);
     int i=0, largo=0;
-    while(i<n)
+    while(i<n && cadena[i]!='\0')
     {
         if(cadena[i]>=32 && cadena[i]<127)
         {
@@ -198,6 +198,44 @@ int leercadenaChar(int n,char cadena[])
     }
     printf("\n");
     return largo;
+}
+
+int fusion(int largocadena1, char cadena1[], int largocadena2, char cadena2[], char cadenasalida[])
+{
+    int contadorcadena1=0;
+    int contadorcadena2=largocadena2-1;
+    int contadorcadenasalida=0;
+    while (contadorcadenasalida<(largocadena1+largocadena2))
+    {
+        if(contadorcadenasalida%2==0)//si es par 0,2,4,6,8
+        {
+            if(contadorcadena1<largocadena1)
+            {
+                cadenasalida[contadorcadenasalida]=cadena1[contadorcadena1];
+                contadorcadena1++;
+            }
+            else
+            {
+                cadenasalida[contadorcadenasalida]=cadena2[contadorcadena2];
+                contadorcadena2--;
+            }
+        }
+        else//si es inpar 1,3,5,7,8
+        {
+            if(contadorcadena2>=0)
+            {
+                cadenasalida[contadorcadenasalida]=cadena2[contadorcadena2];
+                contadorcadena2--;
+            }
+            else
+            {
+                cadenasalida[contadorcadenasalida]=cadena1[contadorcadena1];
+                contadorcadena1++;
+            }
+        }
+        contadorcadenasalida++;
+    }
+    return contadorcadenasalida;
 }
 
 void invertirCadena(int largo, char cadena[], char cadenaI[])
@@ -407,6 +445,15 @@ int main() {
     int largoc5= leercadenaChar(largo,cadena5);
     printf("%i\n",contiene(largoc4,cadena4,largoc5,cadena5));
      */
+
+    //ejercicio 2 prueba1
+    int largocadena1=4;
+    char cadena1[]={"hola"};
+    int largocadena2=3;
+    char cadena2[]={"ala"};
+    char cadena3[7];
+    int largocadena3=fusion(largocadena1,cadena1,largocadena2,cadena2,cadena3);
+    printf("%s largo %i \n",cadena3,largocadena3);
 
     //
     //------------------------ Punteros
