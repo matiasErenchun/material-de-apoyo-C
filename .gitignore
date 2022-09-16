@@ -6,3 +6,9 @@ apuntes1/cmake-build-debug/cmake_install.cmake
 apuntes1/cmake-build-debug/build.ninja
 
 apuntes1/cmake-build-debug/
+
+apunteunidad1/cmake-build-debug/Testing/Temporary/
+
+apunteunidad1/cmake-build-debug/CMakeFiles/
+
+apunteunidad1/cmake-build-debug/
