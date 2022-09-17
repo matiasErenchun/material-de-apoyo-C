@@ -42,6 +42,7 @@ void llenarmatriz(int filas, int columnas,int matriz[100][100])//los compiladore
     }
 }
 
+//las funciones de tipo void no retornan nada
 void imprimirMatriz(int filas, int columnas, int matriz[100][100])
 {
     for (int i = 0; i < filas ; ++i)
@@ -55,6 +56,86 @@ void imprimirMatriz(int filas, int columnas, int matriz[100][100])
     }
 }
 
+void menu()
+{
+    //en c los boleanos como atl no exiten  asi  que se usa 0 para falso y 1 para verdadero
+    int continuar=1;
+    int opcion;
+    while (continuar)
+    {
+        printf("ingrese un numero:\n");
+        printf("*- con 0 se termina el menu.\n");
+        //aqui podemos colocar un menu, imprimiendo las opciones y que un número se la option elegida
+        scanf("%i",&opcion);
+        switch (opcion)// se evalua el valor de opcion  con cada uno de los case
+        {
+            case 0:
+                printf("opcion es 0, se cerrara el programa\n");
+                continuar=0;
+                break;
+            case 1:
+                //si ponene funciones en este lugar la que este en el case correspondiente se ejecutara
+                //lo cuall es bastante comodo.
+                printf("opcion es 1\n");
+                break;
+            case 2:
+                printf("opcion es 2\n");
+                break;
+            case 3:
+                printf("opcion es 3\n");
+                break;
+            default: // si no coincide con ninguno se ejecuta loq ue este en default
+                printf("es un numero distinto de 0,1, 2 o 3\n");
+                break;
+        }
+    }
+    printf("Bye Bye bro :D\n");
+    printf("O.o o.O\n");
+    printf("OoO -.-\n");
+    printf("Q.Q ToT\n");
+
+}
+
+int  ejercicio2prueba120222(int largocadena1, char cadena1[], int largocadena2, char cadena2[], char cadenasalida[])
+{
+    //si no entienden como funciona hablar con matias por discord: onibushi#1453, después de las 00:00 me tienen que mandar un meme
+    int contadorcadena1=0;
+    int contadorcadena2=largocadena2-1;
+    int contadorcadenasalida=0;
+    while (contadorcadenasalida<(largocadena1+largocadena2))
+    {
+        //si es par 0,2,4,6,8
+        if(contadorcadenasalida%2==0)//si aun no termino de copiar la cadena1
+        {
+            if(contadorcadena1<largocadena1)
+            {
+                cadenasalida[contadorcadenasalida]=cadena1[contadorcadena1];
+                contadorcadena1++;
+            }
+            else//si ya termine de copiar la cadena1
+            {
+                cadenasalida[contadorcadenasalida]=cadena2[contadorcadena2];
+                contadorcadena2--;
+            }
+        }
+        else//si es inpar 1,3,5,7,8
+        {
+            if(contadorcadena2>=0)//si aun no termino de copiar la cadena2
+            {
+                cadenasalida[contadorcadenasalida]=cadena2[contadorcadena2];
+                contadorcadena2--;
+            }
+            else//si ya termine la cadena2
+            {
+                cadenasalida[contadorcadenasalida]=cadena1[contadorcadena1];
+                contadorcadena1++;
+            }
+        }
+        contadorcadenasalida++;
+    }
+    return contadorcadenasalida;
+}
+
 int main()
 {
     srand(time(NULL));
@@ -63,14 +144,25 @@ int main()
     int largopalabra = llenarArreglochar(largoMax,palabra);
     printf("la palabra %s, usa la siguiente cantidad de caracteres:%i\n",palabra,largopalabra);// esto imprime cortado porque considera el '\n' como parte el arreglo
     miimprimirarreglo(largopalabra,palabra);
+    printf("\n");
+    printf("|--------Matrices-------|\n");
+    printf("\n");
     int filas = 5;
     int columnas = 5;
     int matriz[100][100];
-    llenarmatriz(filas,columnas,matriz);
+    llenarmatriz(filas,columnas,matriz);/* las matrices se pasan por referencia,
+    *lo que quiere decir que dentro de las funciones se cambia el elemento original sin necesidad de retornarlos ni
+    * de recibirlos en alguna variable.
+    */
     imprimirMatriz(filas,columnas,matriz);
+    printf("\n");
     printf("|----------------|\n");
+    printf("\n");
     filas = 5;
     columnas = 7;
     llenarmatriz(filas,columnas,matriz);
     imprimirMatriz(filas,columnas,matriz);
+
+    printf("|-------un menu--------|\n");
+    menu();
 }
