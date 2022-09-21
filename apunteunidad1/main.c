@@ -97,6 +97,43 @@ void menu()
 }
 
 /*
+ * propruesta solucion ejercicio 1 prueba 1 2022-2
+ */
+int buscaren(int filas, int columnas, int matriz[100][100], int largocadena, int cadena[])
+{
+    int encontrado=-1; //0 es falso o no encontrado y si se encuentra en una fila se retorna la fila
+    int i=0;
+    int j,k,coincidencias;
+    while (i<filas && encontrado==-1)//cuando lo encontramos paramos
+    {
+        coincidencias=0;
+        k=0;
+        while (k<largocadena)
+        {
+            j=0;
+            while (j<columnas)
+            {
+                if(matriz[i][j]==cadena[k])
+                {
+                    coincidencias++;
+                    j+=columnas;
+                }
+                j++;
+            }
+            k++;
+        }
+        printf("coincidencias: %i, en la fila:%i\n",coincidencias,i);
+        if(coincidencias==largocadena)
+        {
+            encontrado=i;
+        }
+        i++;
+    }
+    return encontrado;
+}
+
+
+/*
  * propuesta de solucion ejercicio 2 prueba1 2022-2
  */
 int  ejercicio2prueba120222(int largocadena1, char cadena1[], int largocadena2, char cadena2[], char cadenasalida[])
@@ -167,6 +204,30 @@ int main()
     llenarmatriz(filas,columnas,matriz);
     imprimirMatriz(filas,columnas,matriz);
 
+    //ejercicio1
+    //deje la matriz de 100 x 100 para que el compilador no moleste con punteros esto es más fasil
+    int matrizz[100][100]=
+            {
+            {1,2,3,4},
+            {1,2,3,4},
+            {5,6,7,8},
+            {9,1,2,3}
+            };
+    int cadena[3]={9,2,3};
+    printf("\n");
+    printf("matriz de pruebas ejercicio 1\n");
+    imprimirMatriz(4,4,matrizz);
+    int encontradofila=buscaren(4,4,matrizz,3,cadena);
+    if(encontradofila==-1)
+    {
+        printf("no esta contenido en ninguna fila\n");
+    }
+    else
+    {
+        printf("se encontro en la fila M[%i]\n",encontradofila);
+    }
+
+    printf("\n");
     //ejercicio2
     //dos palabras igual largo
     int largocadena1=4;
@@ -191,7 +252,7 @@ int main()
     char cadenasalida3[4];
     ejercicio2prueba120222(largocadena1,cadena1,largocadena4,cadena4,cadenasalida3);
     miimprimirarreglo(largocadena1+largocadena4,cadenasalida3);
-    // ahora al reves la palabras
+    // ahora al reves las palabras
     //una sin nada
     ejercicio2prueba120222(largocadena4,cadena4,largocadena1,cadena1,cadenasalida3);
     miimprimirarreglo(largocadena1+largocadena4,cadenasalida3);
