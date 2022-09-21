@@ -32,7 +32,7 @@ void miimprimirarreglo(int largo,char arreglo[])
 
 void llenarmatriz(int filas, int columnas,int matriz[100][100])//los compiladores extrictos nos obligana colocar explicitamente los largos maximos
 {
-    //filas y columnas tienen que ser menores o iguales a 100, pero les dejo esa validation a ustedes
+    //filas y columnas tienen que ser menores a 100, pero les dejo esa validation a ustedes
     for (int i = 0; i < filas; ++i)
     {
         for (int j = 0; j < columnas; ++j)
@@ -96,6 +96,9 @@ void menu()
 
 }
 
+/*
+ * propuesta de solucion ejercicio 2 prueba1 2022-2
+ */
 int  ejercicio2prueba120222(int largocadena1, char cadena1[], int largocadena2, char cadena2[], char cadenasalida[])
 {
     //si no entienden como funciona hablar con matias por discord: onibushi#1453, después de las 00:00 me tienen que mandar un meme
@@ -112,7 +115,7 @@ int  ejercicio2prueba120222(int largocadena1, char cadena1[], int largocadena2, 
                 cadenasalida[contadorcadenasalida]=cadena1[contadorcadena1];
                 contadorcadena1++;
             }
-            else//si ya termine de copiar la cadena1
+            else//si ya termine de copiar la cadena1 copio lo que me falte de la cadena2
             {
                 cadenasalida[contadorcadenasalida]=cadena2[contadorcadena2];
                 contadorcadena2--;
@@ -125,7 +128,7 @@ int  ejercicio2prueba120222(int largocadena1, char cadena1[], int largocadena2, 
                 cadenasalida[contadorcadenasalida]=cadena2[contadorcadena2];
                 contadorcadena2--;
             }
-            else//si ya termine la cadena2
+            else//si ya termine la cadena2 copio lo que me falte de la cadena1
             {
                 cadenasalida[contadorcadenasalida]=cadena1[contadorcadena1];
                 contadorcadena1++;
@@ -152,7 +155,8 @@ int main()
     int matriz[100][100];
     llenarmatriz(filas,columnas,matriz);/* las matrices se pasan por referencia,
     *lo que quiere decir que dentro de las funciones se cambia el elemento original sin necesidad de retornarlos ni
-    * de recibirlos en alguna variable.
+    * de recibirlos en alguna variable, por otra parte, los elementos individuales de tipos primitivos (int, float, char,double)
+    * se pasan por parametro ósea una copia de esta manera se requiere retornarlos y guardarlos en una variable.
     */
     imprimirMatriz(filas,columnas,matriz);
     printf("\n");
@@ -162,6 +166,36 @@ int main()
     columnas = 7;
     llenarmatriz(filas,columnas,matriz);
     imprimirMatriz(filas,columnas,matriz);
+
+    //ejercicio2
+    //dos palabras igual largo
+    int largocadena1=4;
+    char cadena1[]={"hola"};
+    int largocadena2=4;
+    char cadena2[]={"hola"};
+    char cadenasalida1[8];//esto tiene que coincidir con los largos,
+    // lo ideal sería usar la estrategia de que las dos cadenas se lean con la funcion llenarArreglochar
+    ejercicio2prueba120222(largocadena1,cadena1,largocadena2,cadena2,cadenasalida1);
+    miimprimirarreglo(largocadena1+largocadena2,cadenasalida1);
+
+    //distinto tamaño
+    int largocadena3=3;
+    char cadena3[]={"xxx"};
+    char cadenasalida2[7];
+    ejercicio2prueba120222(largocadena1,cadena1,largocadena3,cadena3,cadenasalida2);
+    miimprimirarreglo(largocadena1+largocadena3,cadenasalida2);
+
+    //una sin nada
+    int largocadena4=0;
+    char cadena4[]={""};
+    char cadenasalida3[4];
+    ejercicio2prueba120222(largocadena1,cadena1,largocadena4,cadena4,cadenasalida3);
+    miimprimirarreglo(largocadena1+largocadena4,cadenasalida3);
+    // ahora al reves la palabras
+    //una sin nada
+    ejercicio2prueba120222(largocadena4,cadena4,largocadena1,cadena1,cadenasalida3);
+    miimprimirarreglo(largocadena1+largocadena4,cadenasalida3);
+
 
     printf("|-------un menu--------|\n");
     menu();
