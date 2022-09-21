@@ -176,6 +176,24 @@ int  ejercicio2prueba120222(int largocadena1, char cadena1[], int largocadena2, 
     return contadorcadenasalida;
 }
 
+void imprimircadenaenteros(int largo, int cadena[])
+{
+    printf("{");
+    for(int i = 0; i < largo; ++i)
+    {
+
+        if(i==largo-1)
+        {
+            printf(" %i",cadena[i]);
+        }
+        else
+        {
+            printf(" %i,",cadena[i]);
+        }
+    }
+    printf("}\n");
+}
+
 int main()
 {
     srand(time(NULL));
@@ -217,6 +235,9 @@ int main()
     printf("\n");
     printf("matriz de pruebas ejercicio 1\n");
     imprimirMatriz(4,4,matrizz);
+    printf("elementos a buscar: ");
+    imprimircadenaenteros(3,cadena);
+    printf("\n");
     int encontradofila=buscaren(4,4,matrizz,3,cadena);
     if(encontradofila==-1)
     {
@@ -236,6 +257,9 @@ int main()
     char cadena2[]={"hola"};
     char cadenasalida1[8];//esto tiene que coincidir con los largos,
     // lo ideal sería usar la estrategia de que las dos cadenas se lean con la funcion llenarArreglochar
+    printf("ejemplo 1 palabras iguales ejercicio2\n");
+    printf("palabra1: %s\n",cadena1);
+    printf("palabra2: %s\n",cadena2);
     ejercicio2prueba120222(largocadena1,cadena1,largocadena2,cadena2,cadenasalida1);
     miimprimirarreglo(largocadena1+largocadena2,cadenasalida1);
 
@@ -243,6 +267,10 @@ int main()
     int largocadena3=3;
     char cadena3[]={"xxx"};
     char cadenasalida2[7];
+    printf("\n");
+    printf("ejemplo 2 palabras de distinto tamano ejercicio2\n");
+    printf("palabra1: %s\n",cadena1);
+    printf("palabra2: %s\n",cadena3);
     ejercicio2prueba120222(largocadena1,cadena1,largocadena3,cadena3,cadenasalida2);
     miimprimirarreglo(largocadena1+largocadena3,cadenasalida2);
 
@@ -250,10 +278,18 @@ int main()
     int largocadena4=0;
     char cadena4[]={""};
     char cadenasalida3[4];
+    printf("\n");
+    printf("ejemplo 2 palabras de distinto tamano una sin nada ejercicio2\n");
+    printf("palabra1: %s\n",cadena1);
+    printf("palabra2: %s\n",cadena4);
     ejercicio2prueba120222(largocadena1,cadena1,largocadena4,cadena4,cadenasalida3);
     miimprimirarreglo(largocadena1+largocadena4,cadenasalida3);
     // ahora al reves las palabras
     //una sin nada
+    printf("\n");
+    printf("ejemplo 2 palabras de distinto tamano una sin nada ejercicio2\n");
+    printf("palabra1: %s\n",cadena4);
+    printf("palabra2: %s\n",cadena1);
     ejercicio2prueba120222(largocadena4,cadena4,largocadena1,cadena1,cadenasalida3);
     miimprimirarreglo(largocadena1+largocadena4,cadenasalida3);
 
