@@ -354,7 +354,37 @@ int sopadeletras(int largo,char palabra[], int lsopa, char sopa[5][5])
     return cantidadCadena;
 }
 
-int main() {
+int fun (int largo, int arreglo[100])
+{
+    for (int i = 0; i < largo; ++i)
+    {
+        int min=arreglo[i];
+        int minindex=i;
+        for (int j = i; j < largo; ++j)
+        {
+            if(arreglo[j]<min)
+            {
+                min=arreglo[j];
+                minindex=j;
+            }
+        }
+        int aux=arreglo[i];
+        arreglo[i]=arreglo[minindex];
+        arreglo[minindex]=aux;
+    }
+    return 0;
+}
+
+int main()
+{
+    int hola[10]={10,9,8,7,6,5,4,3,2,1};
+    fun(10,hola);
+    for (int i = 0; i < 10; ++i)
+    {
+        printf("%i ,", hola[i]);
+    }
+    printf("\n");
+
 
     //para usar random se require sembrar la semilla
     srand(time(NULL));
