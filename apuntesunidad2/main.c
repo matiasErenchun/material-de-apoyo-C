@@ -78,10 +78,68 @@ void printArregloint(int *arreglo, int largo)
         }
         else
         {
-            printf("%i ,", arreglo[i]);
+            printf("%i, ", arreglo[i]);
         }
     }
     printf(" |\n");
+}
+
+int determinarLargo(char *frase,int maxLargo)
+{
+    int i=0;
+    while (*(frase+i)!='\n')
+    {
+        i++;
+    }
+    printf("largo real %i \n");
+    return i;
+}
+
+void printFrase(int largo,char *frase)
+{
+    for (int i = 0; i < largo; ++i)
+    {
+        printf("%c",*(frase+i));
+    }
+    printf("\n");
+}
+
+void lab0510E4()
+{
+    int continuar=1;
+    while (continuar)
+    {
+        char *frase = malloc(sizeof (char)*255);//aqui reservamos 255 cajas donde puedo guardar char
+        printf("ingrese una frase, maximo de 255 caracteres:");
+        fgets(frase,255, stdin);
+        printf("%s \n",frase);
+        int largoreal=determinarLargo(frase,255);
+        if(largoreal>0)
+        {
+            char *frasechort= malloc((sizeof (char)*largoreal)+1);
+            int countfshort=0;
+            for (int i = 0; i < largoreal; ++i)
+            {
+                if(*(frase+i)!='a' && *(frase+i)!='e' && *(frase+i)!='i' && *(frase+i)!='o' && *(frase+i)!='u')
+                {
+                    *(frasechort+countfshort)=*(frase+i);
+                    countfshort++;
+                }
+            }
+            *(frasechort+countfshort)='\n';
+            printFrase(countfshort,frasechort);
+            determinarLargo(frasechort,largoreal+1);
+            free(frasechort);
+        }
+        else
+        {
+            continuar=0;
+        }
+        free(frase);
+
+    }
+    printf("fin del ejemplo");
+
 }
 int main() {
     printf("Hello, World!\n");
@@ -101,6 +159,8 @@ int main() {
     printArregloint(arreglorandom,largorandom);
     insertionSort(arreglorandom,largorandom);
     printArregloint(arreglorandom,largorandom);
+
+    lab0510E4();
     return 0;
 
 
