@@ -8,8 +8,64 @@ typedef struct nodo
     struct nodo *nodoSiguente;
 }nodoLista;
 
-int main() {
-    printf("Hello, World!\n");
+typedef struct ListNode ListNode;
+struct ListNode{
+    int val;
+    struct ListNode *next;
+};
+
+//https://leetcode.com/problems/middle-of-the-linked-list/submissions/
+struct ListNode* middleNode()
+{
+    int cantidadNodos=6;
+    struct ListNode *head = malloc(sizeof (ListNode));;
+    struct ListNode *actual = malloc(sizeof (ListNode));
+    struct ListNode *siguente;
+    for (int i = 1; i <= cantidadNodos; ++i)
+    {
+
+        actual->val=i;
+        siguente = malloc(sizeof (ListNode));
+        actual->next=siguente;
+        if(i==1)
+        {
+            head=actual;
+        }
+        if(i==cantidadNodos)
+        {
+            actual->next=NULL;
+        }
+        else
+        {
+
+            actual=siguente;
+        }
+    }
+    int count=0;
+    actual=head;
+    while (actual != NULL)
+    {
+        printf("%i\n", actual->val);
+        actual=actual->next;
+        count++;
+
+    }
+    printf("count/2 = %i",(count/2));
+    int nuevocount=0;
+    actual=head;
+    printf("actual %i\n", head->val);
+    while (nuevocount!=(count/2))
+    {
+        actual=actual->next;
+        nuevocount++;
+    }
+    printf("actual %i\n", actual->val);
+    return actual;
+}
+
+void ejemplostruct()
+{
+    printf("un ejemplo de estructuras y listas enlazadas\n");
     nodoLista *nodo1=malloc(sizeof (nodoLista));//reservamos memoria para guardar un nodoLista
     nodoLista *nodo2=malloc(sizeof (nodoLista));;
     nodoLista *nodo3=malloc(sizeof (nodoLista));;
@@ -26,5 +82,10 @@ int main() {
         printf("valor nodo actual %i \n",nodoActual->valor);
         nodoActual=nodoActual->nodoSiguente;
     }
+}
+int main()
+{
+    ejemplostruct();
+    //middleNode();
     return 0;
 }
