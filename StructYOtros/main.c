@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <malloc.h>
+#include <stdbool.h>
 
 //aqui creamos nuestro nuevo tipo de dato llamado nodo de maner ainterna , que se llamara nodolista por el resto del programa
 typedef struct nodo
@@ -63,6 +64,33 @@ struct ListNode* middleNode()
     return actual;
 }
 
+bool PalindromeNumber(int valor)
+{
+    bool si=true;
+    if(valor>=0)
+    {
+        int real=valor;
+        int reverse_number=0;
+        while (valor != 0)
+        {
+            reverse_number = reverse_number * 10;
+            reverse_number = reverse_number + valor % 10;
+            valor = valor / 10;
+        }
+        if(real!=reverse_number)
+        {
+            si=false;
+        }
+
+    }
+    else
+    {
+        si=false;
+    }
+
+    return si;
+}
+
 void ejemplostruct()
 {
     printf("un ejemplo de estructuras y listas enlazadas\n");
@@ -83,9 +111,12 @@ void ejemplostruct()
         nodoActual=nodoActual->nodoSiguente;
     }
 }
+
 int main()
 {
-    ejemplostruct();
+    //ejemplostruct();
     //middleNode();
+    printf("%i \n",PalindromeNumber(121));
+
     return 0;
 }
