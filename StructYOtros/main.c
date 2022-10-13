@@ -99,7 +99,10 @@ void ejemplostruct()
     nodoLista *nodo3=malloc(sizeof (nodoLista));;
 
     nodo1->valor=10;//asignamos los valores correspondientes a cada elemento del nodolista
-    nodo2->valor=20;
+    //nodo2->valor=20;
+    printf("ingrese valor nodo 2\n");
+    scanf_s("%i",&nodo2->valor);
+    printf("%i \n",nodo2->valor);
     nodo1->nodoSiguente=nodo2;
     nodo3->valor=30;
     nodo2->nodoSiguente=nodo3;
@@ -114,9 +117,9 @@ void ejemplostruct()
 
 int main()
 {
-    //ejemplostruct();
+    ejemplostruct();
     //middleNode();
-    printf("%i \n",PalindromeNumber(121));
+    //printf("%i \n",PalindromeNumber(121));
 
     return 0;
 }
