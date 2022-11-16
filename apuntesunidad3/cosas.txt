@@ -1,0 +1,4 @@
+estas es una prueba
+de como leer archivos en C
+XD 
+....
